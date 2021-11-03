@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Sample JS Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Mark Alcantara",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alcantaramark/js-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alcantaramark/js-backend/issues"
+  },
+  "homepage": "https://github.com/alcantaramark/js-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
