@@ -1,0 +1,25 @@
+[
+    {
+        "_id": "6187b86baeb47c9338766974", 
+        "firstName": "Mark John", 
+        "lastName": "Alcantara",
+        "email": "mark.alcantara@chevron.com",
+        "skills": 
+            [ 
+                { "_id": "6187b80df1fbe230e77b459d", "name": "Backend"}, 
+                { "_id": "6187b8316be5c4221060ea76", "name": "Frontend"}, 
+                { "_id": "6187b85cf25a7093f35938f1", "name": "Mobile Development"}
+            ]
+    },
+    { 
+        "_id": "6187b8774b6718285342b0e6",
+        "firstName": "April", 
+        "lastName": "Alcantara",
+        "email": "april.alcantara@somewhere.com",
+        "skills": 
+            [ 
+                { "_id": "6187b8408c2158e8d9f8c3e5","name": "Database"}, 
+                { "_id": "6187b855d5d3dc89e6b714b6", "name": "Cloud"}
+            ]
+    }
+]

@@ -1,11 +1,10 @@
 const express = require("express");
-const postRoute = require("./route/post");
-
 require("./config")();
 
 const app = express();
 
-app.use("/api/v1/posts", postRoute);
+require("./route/members")(app);
+
 
 
 app.listen(8080, () => console.log("server is listening to port 8080"));
