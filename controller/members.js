@@ -6,10 +6,37 @@ exports.getAllMembers = (req, res) => {
         .catch(e => res.status(500).send({ message: e.message }));
 };
 
+exports.deleteMember = (req, res) => {
+    const id = req.params.id;
+    
+    Members.findByIdAndDelete(id).then(data => {
+        if(!data)
+            res.status(404).send({ message: `Cannot find id ${id}.`});
+        else
+            res.status(200).send({ message: `Member with id ${id} is successfully deleted` });
+    }).catch(e => res.status(505).send({ message: e.message}));
+};
+
 exports.getMember = (req, res) => {
     const id = req.params.id;
     Members.findById(id).then(data => res.status(200).send(data))
         .catch(e => res.status(500).send({ message: e.message }));
+};
+
+exports.updateMember = (req, res) => {
+    console.log(req.body)
+    if(!req.body.firstName)
+        return res.status(404).send({ message: "Cannot find member to update"});
+    
+    const id = req.params.id;
+
+    Members.findByIdAndUpdate(id, req.body, {useFindandModify: false}).then(data => { 
+            if(!data.firstName)
+                res.status(404).send({ message: `Cannot find member ${id}` });
+            else    
+                res.status(200).send({ message: "Member successfully updated" });
+        })
+        .catch(e => res.status(500).send({ message: e.message}));
 };
 
 exports.createMember = (req, res) => {
