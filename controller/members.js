@@ -1,9 +1,15 @@
 const Members = require("../model/members");
 
 exports.getAllMembers = (req, res) => {
+    const id = req.query.id;
+    if(!id)
         Members.find()
         .then(data => res.status(200).send(data))
         .catch(e => res.status(500).send({ message: e.message }));
+    else
+        Members.findById(id)
+            .then(data => res.status(200).send(data))
+            .catch(e => res.status(500).send({ message: e.message }));
 };
 
 exports.deleteMember = (req, res) => {
@@ -18,7 +24,8 @@ exports.deleteMember = (req, res) => {
 };
 
 exports.getMember = (req, res) => {
-    const id = req.params.id;
+    const id = req.query.id;
+    
     Members.findById(id).then(data => res.status(200).send(data))
         .catch(e => res.status(500).send({ message: e.message }));
 };
