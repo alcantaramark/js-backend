@@ -24,7 +24,7 @@ exports.deleteMember = (req, res) => {
 };
 
 exports.getMember = (req, res) => {
-    const id = req.query.id;
+    const id = req.params.id;
     
     Members.findById(id).then(data => res.status(200).send(data))
         .catch(e => res.status(500).send({ message: e.message }));
