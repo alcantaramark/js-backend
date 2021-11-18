@@ -1,0 +1,28 @@
+.spacer {
+    flex: 1 1 auto;
+}
+img {
+    padding-right: 0.5em;
+}
+
+mat-icon {
+    padding-right: 0.5em;
+}
+
+.container {
+    width: 100%;
+    height: 85%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.side-nav-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    margin-top: 2%;
+    justify-content: center;
+}
+.side-nav{
+    padding: 20px;
+}

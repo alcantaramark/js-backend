@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle();">
+            <mat-icon color="secondary">menu</mat-icon>
+        </button>
+        <span>Node js Backend Demo</span>
+        <span class="spacer"></span>
+        <a mat-button href="https://github.com/alcantaramark/js-backend/tree/main/members-ui">
+            <img src="./../../assets/images/github-icon.png" />
+            <span>Github</span>
+        </a>    
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-drawer-container autosize class="container">
+    <mat-drawer  #drawer class="side-nav">
+        <mat-list role="lists">
+            <mat-list-item>
+                <a mat-button [routerLink]="['members']" (click)="drawer.toggle()">
+                    <mat-icon color="primary">groups</mat-icon>
+                    <span>Members</span>
+                </a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-button [routerLink]="['skills']" (click)="drawer.toggle()">
+                    <mat-icon color="primary">engineering</mat-icon>
+                    <span>Skills</span>
+                </a>
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>
