@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MemberInterface } from '../member-interface';
+import { MemberService } from './../service/member.service';
 
 @Component({
   selector: 'app-member-list',
@@ -9,9 +11,15 @@ import { MatDrawer } from '@angular/material/sidenav';
 
 
 export class MemberListComponent implements OnInit {
-  constructor() { }
+  constructor(private memberService: MemberService) { 
+    
+    this.memberService.getMembers().subscribe(res => {
+      console.log('Members', JSON.stringify(res));
+    });
+  }
 
   ngOnInit(): void {
+    
   }
 
   
