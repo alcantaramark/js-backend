@@ -4,10 +4,15 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule }  from '@angular/material/grid-list';
+
 
 import { MemberListComponent } from './member-list/member-list.component';
 import { MembersRoutingModule } from './../members/members-routing.module';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -19,7 +24,11 @@ import { MembersRoutingModule } from './../members/members-routing.module';
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
-    MembersRoutingModule
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MembersRoutingModule,
+    FlexLayoutModule
   ],
   exports: [
     MemberListComponent

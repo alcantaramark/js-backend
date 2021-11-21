@@ -5,5 +5,7 @@ export interface MemberInterface {
     lastName: string,
     email: string,
     jobTitle: string,
+    profileDescription: string,
+    profilePicture: string,
     skills: SkillInterface[]
 }

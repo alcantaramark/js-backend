@@ -11,8 +11,8 @@
         </a>    
     </mat-toolbar-row>
 </mat-toolbar>
-<mat-drawer-container autosize class="container">
-    <mat-drawer  #drawer class="side-nav">
+<mat-drawer-container hasBackdrop="true">
+    <mat-drawer  #drawer class="side-nav" mode="push">
         <mat-list role="lists">
             <mat-list-item>
                 <a mat-button [routerLink]="['members']" (click)="drawer.toggle()">
@@ -22,11 +22,13 @@
             </mat-list-item>
             <mat-list-item>
                 <a mat-button [routerLink]="['skills']" (click)="drawer.toggle()">
-                    <mat-icon color="primary">engineering</mat-icon>
+                    <mat-icon color="primary">work</mat-icon>
                     <span>Skills</span>
                 </a>
             </mat-list-item>
         </mat-list>
     </mat-drawer>
-    <router-outlet></router-outlet>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
 </mat-drawer-container>

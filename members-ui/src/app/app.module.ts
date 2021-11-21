@@ -11,7 +11,7 @@ import { MembersModule } from './members/members.module';
 import { MembersRoutingModule } from './members/members-routing.module';
 import { SkillsRoutingModule } from './skills/skills-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { APIInterceptor } from './shared/service/api.interceptor';
+import { APIInterceptor } from './shared/service/interceptor/api.interceptor';
 
 
 @NgModule({
