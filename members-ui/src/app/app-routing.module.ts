@@ -5,20 +5,13 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { SkillListComponent } from './skills/skill-list/skill-list.component';
 
 const routes: Routes = [
-  {
-    path: 'members', component: MemberListComponent,
-    children: []
-  },
-  {
-    path: 'skills', component: SkillListComponent
-  },
-  {
-    path: '**', redirectTo: 'members'
- }
+  { path: '', pathMatch: 'full', redirectTo: 'members' },
+  { path: 'members', component: MemberListComponent },
+  { path: 'skills', component: SkillListComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

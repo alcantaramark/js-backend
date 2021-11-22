@@ -10,6 +10,8 @@ exports.getAllMembers = (req, res) => {
         Members.findById(id)
             .then(data => res.status(200).send(data))
             .catch(e => res.status(500).send({ message: e.message }));
+    
+    
 };
 
 exports.deleteMember = (req, res) => {
