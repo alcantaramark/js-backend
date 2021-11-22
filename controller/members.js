@@ -1,16 +1,24 @@
 const Members = require("../model/members");
+const Skills = require("../model/skills");
 
 exports.getAllMembers = (req, res) => {
     const id = req.query.id;
-    if(!id)
-        Members.find()
-        .then(data => res.status(200).send(data))
-        .catch(e => res.status(500).send({ message: e.message }));
-    else
-        Members.findById(id)
-            .then(data => res.status(200).send(data))
-            .catch(e => res.status(500).send({ message: e.message }));
     
+    
+    if(!id)
+        Members.find().populate('skills').exec((err, data) => {
+            if(err) 
+                res.status(500).send({ message: err.message });
+            else
+                res.status(200).send(data);
+        })
+    else
+        Members.findById(id).populate('skills').exec((err, data) => {
+            if(err) 
+                res.status(500).send({ message: err.message });
+            else
+                res.status(200).send(data)
+        });    
     
 };
 
@@ -28,8 +36,12 @@ exports.deleteMember = (req, res) => {
 exports.getMember = (req, res) => {
     const id = req.params.id;
     
-    Members.findById(id).then(data => res.status(200).send(data))
-        .catch(e => res.status(500).send({ message: e.message }));
+    Members.findById(id).populate('skills').exec((err, data) => {
+        if(err) 
+            res.status(500).send({ message: err.message });
+        else
+            res.status(200).send(data)
+    });    
 };
 
 exports.updateMember = (req, res) => {
