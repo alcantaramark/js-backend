@@ -57,7 +57,10 @@ exports.createMember = (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        skills: req.body.skills
+        skills: req.body.skills,
+        profilePicture: req.body.profilePicture,
+        jobTitle: req.body.jobTitle,
+        profileDescription: req.body.profileDescription
     });
 
     member.save(member).then(data => res.status(200).send(data))

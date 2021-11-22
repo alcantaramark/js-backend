@@ -1,8 +1,8 @@
 [
-    { "_id": "6187b80df1fbe230e77b459d", "name": "Backend"},
-    { "_id": "6187b8316be5c4221060ea76", "name": "Frontend"},
-    { "_id": "6187b8408c2158e8d9f8c3e5","name": "Database"},
-    { "_id": "6187b84b9d4ab56686755a8b", "name": "API"},
-    { "_id": "6187b855d5d3dc89e6b714b6", "name": "Cloud"},
-    { "_id": "6187b85cf25a7093f35938f1", "name": "Mobile Development"}
+    { "name": "Backend"},
+    { "name": "Frontend"},
+    { "name": "Database"},
+    { "name": "API"},
+    { "name": "Cloud"},
+    { "name": "Mobile Development"}
 ]

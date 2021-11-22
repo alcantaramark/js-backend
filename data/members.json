@@ -4,11 +4,13 @@
         "firstName": "Mark John", 
         "lastName": "Alcantara",
         "email": "mark.alcantara@chevron.com",
+        "jobTitle": "Technical Lead",
+        "profilePicture": "https://scontent.fmnl25-2.fna.fbcdn.net/v/t39.30808-6/s1080x2048/256410111_10226986820442376_4185906101335017671_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=Ge6FUZExyuUAX9DHf9U&_nc_ht=scontent.fmnl25-2.fna&oh=74c3fa561c3c88048619ab437bfca53b&oe=619C0823",
         "skills": 
             [ 
-                { "_id": "6187b80df1fbe230e77b459d", "name": "Backend"}, 
-                { "_id": "6187b8316be5c4221060ea76", "name": "Frontend"}, 
-                { "_id": "6187b85cf25a7093f35938f1", "name": "Mobile Development"}
+                { "_id": "6187b80df1fbe230e77b459d" }, 
+                { "_id": "6187b8316be5c4221060ea76" }, 
+                { "_id": "6187b85cf25a7093f35938f1" }
             ]
     },
     { 
@@ -16,10 +18,12 @@
         "firstName": "April", 
         "lastName": "Alcantara",
         "email": "april.alcantara@somewhere.com",
+        "jobTitle": "Senior Java Engineer",
+        "profilePicture": "https://scontent.fmnl25-1.fna.fbcdn.net/v/t1.6435-9/95260473_10222372973379083_5492856279267278848_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Fv2vXmJOezQAX_Bnp1o&_nc_ht=scontent.fmnl25-1.fna&oh=c9c68280ddcda487744af70c7a509a8d&oe=61BC427F",
         "skills": 
             [ 
-                { "_id": "6187b8408c2158e8d9f8c3e5","name": "Database"}, 
-                { "_id": "6187b855d5d3dc89e6b714b6", "name": "Cloud"}
+                { "_id": "6187b8408c2158e8d9f8c3e5" }, 
+                { "_id": "6187b855d5d3dc89e6b714b6" }
             ]
     }
 ]
