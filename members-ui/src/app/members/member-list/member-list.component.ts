@@ -12,7 +12,6 @@ import { MemberService } from './../service/member.service';
 
 export class MemberListComponent implements OnInit {
   members: MemberInterface[] = new Array(); 
-
   constructor(private memberService: MemberService) { 
     this.memberService.getMembers().subscribe(res => {
       this.members = res;

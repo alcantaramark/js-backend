@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from '../service/loader/loader.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loaderService: LoaderService) { }
 
   ngOnInit(): void {
   }
