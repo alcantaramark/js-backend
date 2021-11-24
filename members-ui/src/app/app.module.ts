@@ -8,8 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //Feature Modules
 import { MembersModule } from './members/members.module';
-import { MembersRoutingModule } from './members/members-routing.module';
-import { SkillsRoutingModule } from './skills/skills-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { APIInterceptor } from './shared/service/interceptor/api.interceptor';
 
@@ -23,8 +21,6 @@ import { APIInterceptor } from './shared/service/interceptor/api.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     MembersModule,
-    MembersRoutingModule,
-    SkillsRoutingModule,
     SharedModule,
     HttpClientModule
   ],

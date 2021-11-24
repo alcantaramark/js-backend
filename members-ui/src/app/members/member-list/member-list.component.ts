@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { MemberInterface } from '../member-interface';
 import { MemberService } from './../service/member.service';
 
@@ -12,11 +13,14 @@ import { MemberService } from './../service/member.service';
 
 export class MemberListComponent implements OnInit {
   members: MemberInterface[] = new Array(); 
-  constructor(private memberService: MemberService) { 
+  constructor(private memberService: MemberService,
+    public router: Router) {
+
     this.memberService.getMembers().subscribe(res => {
       this.members = res;
       console.log('Members', JSON.stringify(res));
     });
+
   }
 
   ngOnInit(): void {
