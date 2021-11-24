@@ -11,6 +11,9 @@
         </a>    
     </mat-toolbar-row>
 </mat-toolbar>
+<div class="loader-container" *ngIf="loaderService.isLoading | async">
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+</div>
 <mat-drawer-container hasBackdrop="true">
     <mat-drawer  #drawer class="side-nav" mode="push">
         <mat-list role="lists">

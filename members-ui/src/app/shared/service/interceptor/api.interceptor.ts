@@ -5,15 +5,19 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private loaderService: LoaderService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log('request coming through interceptor');
-    return next.handle(request);
+    this.loaderService.isLoading.next(true);
+    return next.handle(request).pipe(
+      finalize(() => this.loaderService.isLoading.next(false))
+    );
   }
 }
