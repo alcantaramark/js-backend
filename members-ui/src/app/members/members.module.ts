@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,11 +14,15 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { MembersRoutingModule } from './../members/members-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { MemberHomeComponent } from './member-home/member-home.component';
 
 
 @NgModule({
   declarations: [
-    MemberListComponent
+    MemberListComponent,
+    MemberProfileComponent,
+    MemberHomeComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +33,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatListModule,
     MatGridListModule,
     MembersRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule
   ],
   exports: [
     MemberListComponent
