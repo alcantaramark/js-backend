@@ -1,0 +1,46 @@
+<mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl] = "memberPersonalDetails">
+        <form [formGroup]="memberPersonalDetails">
+            <ng-template matStepLabel>Fill out personal details</ng-template>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="firstName" required />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last Name" formControlName="lastName" required />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email" required type="email" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Job Title</mat-label>
+                    <input matInput placeholder="Job Title" formControlName="jobTitle" required />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Profile Picture</mat-label>
+                    <input matInput placeholder="Profile Picture" formControlName="profilePicture" required />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Profile Description</mat-label>
+                    <input matInput placeholder="Profile Description" formControlName="profileDescription" required />
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl] = "memberSKills">
+        <ng-template matStepLabel>Select skills</ng-template>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Confirm Details</ng-template>
+    </mat-step>
+</mat-stepper>

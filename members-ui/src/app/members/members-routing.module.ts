@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemberListComponent } from './member-list/member-list.component';
 import { RouterModule } from '@angular/router';
-import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { MemberAddComponent } from './member-add/member-add.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
     children: 
       [
         { path: 'members-list', component: MemberListComponent },
-        { path: 'member-profile', component: MemberProfileComponent },
+        { path: 'member-add', component: MemberAddComponent },
         { path: '', redirectTo: 'members-list', pathMatch: 'full' }
       ]
   }
