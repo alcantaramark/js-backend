@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SkillInterface } from 'src/app/skills/skill-interface';
+import { MemberInterface } from '../member-interface';
 
 
 @Component({
@@ -8,24 +10,45 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./member-add.component.scss']
 })
 export class MemberAddComponent implements OnInit {
-  memberPersonalDetails: FormGroup = <FormGroup>{};
-  memberSKills: FormGroup = <FormGroup>{};
+  memberPersonalDetailsForm: FormGroup = <FormGroup>{};
+  memberSkillsForm: FormGroup = <FormGroup>{};
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.memberPersonalDetails = this.formBuilder.group({
+    this.memberPersonalDetailsForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.email],
       jobTitle: ['', Validators.required],
       profilePicture: ['', Validators.required],
-      profileDescription: ['']
+      profileDescription: [''],
+      skills: this.formBuilder.array([this.memberSkillsForm])
     });
 
-    this.memberSKills = this.formBuilder.group({
-      skills: new FormArray([new FormControl()])
+    this.memberSkillsForm = this.formBuilder.group({
+      skill: ['']
     });
+  }
+
+  get skills(): FormArray{
+    return this.memberPersonalDetailsForm.get('skills') as FormArray;
+  }
+
+  saveMember(){
+    let newMember: MemberInterface = <MemberInterface>{};
+    let newMemberSkills: string[] = new Array();
+
+    if(this.memberPersonalDetailsForm.valid){
+      newMember.firstName = this.memberPersonalDetailsForm.controls['firstName'].value;
+      newMember.lastName = this.memberPersonalDetailsForm.controls['lastName'].value;
+      newMember.email = this.memberPersonalDetailsForm.controls['email'].value;
+      newMember.jobTitle = this.memberPersonalDetailsForm.controls['jobTitle'].value;
+      newMember.profilePicture = this.memberPersonalDetailsForm.controls['profilePicture'].value;
+      newMember.profileDescription = this.memberPersonalDetailsForm.controls['profileDescription'].value;
+
+      this.skills.controls.forEach(item => newMemberSkills.push(item.value.skill));
+    }
   }
 
 }

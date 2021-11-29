@@ -1,35 +1,41 @@
 <mat-stepper [linear]="true" #stepper>
-    <mat-step [stepControl] = "memberPersonalDetails">
-        <form [formGroup]="memberPersonalDetails">
+    <mat-step [stepControl] = "memberPersonalDetailsForm">
+        <form [formGroup]="memberPersonalDetailsForm">
             <ng-template matStepLabel>Fill out personal details</ng-template>
             <div>
                 <mat-form-field appearance="fill">
                     <mat-label>First Name</mat-label>
-                    <input matInput placeholder="First Name" formControlName="firstName" required />
+                    <input matInput placeholder="First Name" formControlName="firstName"  />
                 </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Last Name</mat-label>
-                    <input matInput placeholder="Last Name" formControlName="lastName" required />
+                    <input matInput placeholder="Last Name" formControlName="lastName"  />
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" formControlName="email" required type="email" />
+                    <input matInput placeholder="Email" formControlName="email"  type="email" />
                 </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Job Title</mat-label>
-                    <input matInput placeholder="Job Title" formControlName="jobTitle" required />
+                    <input matInput placeholder="Job Title" formControlName="jobTitle"  />
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Profile Picture</mat-label>
-                    <input matInput placeholder="Profile Picture" formControlName="profilePicture" required />
+                    <input matInput placeholder="Profile Picture" formControlName="profilePicture"  />
                 </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Profile Description</mat-label>
-                    <input matInput placeholder="Profile Description" formControlName="profileDescription" required />
+                    <textarea rows="5" matInput placeholder="Profile Description" formControlName="profileDescription" ></textarea>
                 </mat-form-field>
             </div>
             <div>
@@ -37,10 +43,18 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl] = "memberSKills">
+    <mat-step [stepControl] = "skills">
         <ng-template matStepLabel>Select skills</ng-template>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Confirm Details</ng-template>
+        <div>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="saveMember()">Save</button>
+        </div>
     </mat-step>
-</mat-stepper>
+</mat-stepper> 
