@@ -1,0 +1,71 @@
+<mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl] = "memberPersonalDetailsForm">
+        <form [formGroup]="memberPersonalDetailsForm">
+            <ng-template matStepLabel>Fill out personal details</ng-template>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="firstName"  />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last Name" formControlName="lastName"  />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email"  type="email" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Job Title</mat-label>
+                    <input matInput placeholder="Job Title" formControlName="jobTitle"  />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Profile Picture</mat-label>
+                    <input matInput placeholder="Profile Picture" formControlName="profilePicture"  />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Profile Description</mat-label>
+                    <textarea rows="5" matInput placeholder="Profile Description" formControlName="profileDescription" ></textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl] = "memberPersonalDetailsForm">
+        <form [formGroup]="memberPersonalDetailsForm">
+            <ng-template matStepLabel>Select skills</ng-template>
+            <div formArrayName="skills">
+                <div *ngFor="let skill of availableSkills">
+                    <section class="section">
+                        <span>
+                            <mat-checkbox>{{ skill.name }}</mat-checkbox>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Confirm Details</ng-template>
+        <div>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="saveMember()">Save</button>
+        </div>
+    </mat-step>
+</mat-stepper> 
