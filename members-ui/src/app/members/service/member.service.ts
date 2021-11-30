@@ -12,7 +12,7 @@ export class MemberService {
 
   getMembers(): Observable<any>{
     return this.http.get(`${ API_URL }members`).pipe(
-      catchError(e => { throw 'error in service: ' + JSON.stringify(e) })
+      catchError(e => { throw 'error in member service: ' + JSON.stringify(e) })
     );
   }
 }

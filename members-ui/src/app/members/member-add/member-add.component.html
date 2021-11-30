@@ -43,12 +43,23 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl] = "skills">
-        <ng-template matStepLabel>Select skills</ng-template>
-        <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </div>
+    <mat-step [stepControl] = "memberPersonalDetailsForm">
+        <form [formGroup]="memberPersonalDetailsForm">
+            <ng-template matStepLabel>Select skills</ng-template>
+            <div formArrayName="skills">
+                <div *ngFor="let skill of availableSkills">
+                    <section class="section">
+                        <span>
+                            <mat-checkbox>{{ skill.name }}</mat-checkbox>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Confirm Details</ng-template>

@@ -12,6 +12,7 @@ import { MatGridListModule }  from '@angular/material/grid-list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 import { MemberListComponent } from './member-list/member-list.component';
@@ -39,6 +40,7 @@ import { MemberAddComponent } from './member-add/member-add.component';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
     MembersRoutingModule,
     FlexLayoutModule,
     RouterModule,

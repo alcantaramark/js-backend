@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SkillService } from 'src/app/skills/service/skill.service';
 import { SkillInterface } from 'src/app/skills/skill-interface';
 import { MemberInterface } from '../member-interface';
 
@@ -11,9 +12,12 @@ import { MemberInterface } from '../member-interface';
 })
 export class MemberAddComponent implements OnInit {
   memberPersonalDetailsForm: FormGroup = <FormGroup>{};
-  memberSkillsForm: FormGroup = <FormGroup>{};
+  availableSkills: SkillInterface[] = new Array();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder
+    , private skillService: SkillService) { 
+      this.skillService.getSkills().subscribe(res => { this.availableSkills = res; alert(JSON.stringify(this.availableSkills)); });
+    }
 
   ngOnInit(): void {
     this.memberPersonalDetailsForm = this.formBuilder.group({
@@ -23,13 +27,9 @@ export class MemberAddComponent implements OnInit {
       jobTitle: ['', Validators.required],
       profilePicture: ['', Validators.required],
       profileDescription: [''],
-      skills: this.formBuilder.array([this.memberSkillsForm])
+      skills: this.formBuilder.array([])
     });
-
-    this.memberSkillsForm = this.formBuilder.group({
-      skill: ['']
-    });
-  }
+}
 
   get skills(): FormArray{
     return this.memberPersonalDetailsForm.get('skills') as FormArray;
