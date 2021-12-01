@@ -16,7 +16,7 @@ export class MemberAddComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder
     , private skillService: SkillService) { 
-      this.skillService.getSkills().subscribe(res => { this.availableSkills = res; alert(JSON.stringify(this.availableSkills)); });
+      this.skillService.getSkills().subscribe(res => this.availableSkills = res);
     }
 
   ngOnInit(): void {
