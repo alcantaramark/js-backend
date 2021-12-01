@@ -12,11 +12,13 @@ import { MemberInterface } from '../member-interface';
 })
 export class MemberAddComponent implements OnInit {
   memberPersonalDetailsForm: FormGroup = <FormGroup>{};
-  availableSkills: SkillInterface[] = new Array();
+  availableSkills: any[] = new Array();
 
   constructor(private formBuilder: FormBuilder
     , private skillService: SkillService) { 
-      this.skillService.getSkills().subscribe(res => { this.availableSkills = res; alert(JSON.stringify(this.availableSkills)); });
+      this.skillService.getSkills().subscribe(res => res.map((obj: SkillInterface) => {
+        this.availableSkills.push({ _id:  obj._id, name: obj.name, checked: false})
+      }));
     }
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class MemberAddComponent implements OnInit {
       newMember.profilePicture = this.memberPersonalDetailsForm.controls['profilePicture'].value;
       newMember.profileDescription = this.memberPersonalDetailsForm.controls['profileDescription'].value;
 
-      this.skills.controls.forEach(item => newMemberSkills.push(item.value.skill));
+      console.log('skills form', this.availableSkills);
     }
   }
 
