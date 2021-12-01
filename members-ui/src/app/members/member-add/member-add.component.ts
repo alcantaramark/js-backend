@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { mergeMap } from 'rxjs';
 import { SkillService } from 'src/app/skills/service/skill.service';
 import { SkillInterface } from 'src/app/skills/skill-interface';
 import { MemberInterface } from '../member-interface';
@@ -12,11 +13,11 @@ import { MemberInterface } from '../member-interface';
 })
 export class MemberAddComponent implements OnInit {
   memberPersonalDetailsForm: FormGroup = <FormGroup>{};
-  availableSkills: SkillInterface[] = new Array();
-
+  
   constructor(private formBuilder: FormBuilder
-    , private skillService: SkillService) { 
-      this.skillService.getSkills().subscribe(res => this.availableSkills = res);
+    , private skillService: SkillService) {
+
+      
     }
 
   ngOnInit(): void {
@@ -29,15 +30,30 @@ export class MemberAddComponent implements OnInit {
       profileDescription: [''],
       skills: this.formBuilder.array([])
     });
-}
-
-  get skills(): FormArray{
-    return this.memberPersonalDetailsForm.get('skills') as FormArray;
+    let controls = this.memberPersonalDetailsForm.controls['skills'] as FormArray;
+    controls.clear();
+    
+    setTimeout(() => {
+      this.skillService.getSkills().subscribe({ next: (skills: SkillInterface[]) => {
+        skills.forEach(obj => {
+          controls.push(this.formBuilder.group({
+            id: [obj._id],
+            name: [obj.name],
+            selected: [false]
+          }))
+        });
+      }});
+    })
   }
 
+  ngAfterViewInit(){
+  
+  
+  }
+  
   saveMember(){
     let newMember: MemberInterface = <MemberInterface>{};
-    let newMemberSkills: string[] = new Array();
+    let newMemberSkills: SkillInterface[] = new Array();
 
     if(this.memberPersonalDetailsForm.valid){
       newMember.firstName = this.memberPersonalDetailsForm.controls['firstName'].value;
@@ -47,8 +63,24 @@ export class MemberAddComponent implements OnInit {
       newMember.profilePicture = this.memberPersonalDetailsForm.controls['profilePicture'].value;
       newMember.profileDescription = this.memberPersonalDetailsForm.controls['profileDescription'].value;
 
-      this.skills.controls.forEach(item => newMemberSkills.push(item.value.skill));
+      
+      this.skills.controls.forEach(item => {
+        let newMemberSkill = <SkillInterface>{};
+        if(item.value.selected){
+          newMemberSkill._id = item.value.id;
+          newMemberSkill.name = item.value.name;
+          newMemberSkills.push(newMemberSkill);
+        }
+      })
+
+      newMember.skills = newMemberSkills;
+
     }
+  }
+
+
+  get skills(): FormArray{
+    return this.memberPersonalDetailsForm.get('skills') as FormArray;
   }
 
 }
