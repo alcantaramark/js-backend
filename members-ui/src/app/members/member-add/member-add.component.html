@@ -4,42 +4,32 @@
             <ng-template matStepLabel>Fill out personal details</ng-template>
                 <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>First Name</mat-label>
                         <input matInput placeholder="First Name" formControlName="firstName"  />
                     </mat-form-field>
-                </div>
-                <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>Last Name</mat-label>
                         <input matInput placeholder="Last Name" formControlName="lastName"  />
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>Email</mat-label>
                         <input matInput placeholder="Email" formControlName="email"  type="email" />
                     </mat-form-field>
-                </div>
-                <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>Job Title</mat-label>
                         <input matInput placeholder="Job Title" formControlName="jobTitle"  />
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>Profile Picture</mat-label>
                         <input matInput placeholder="Profile Picture" formControlName="profilePicture"  />
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>Profile Description</mat-label>
                         <textarea rows="3" matInput placeholder="Profile Description" formControlName="profileDescription" ></textarea>
                     </mat-form-field>
                 </div>
                 <div>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperNext (click)="saveMemberTemp();">Next</button>
                 </div>
         </mat-step>
         <mat-step [stepControl] = "memberPersonalDetailsForm">
@@ -55,11 +45,22 @@
             </div>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext (click)='saveSkillsTemp()'>Next</button>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Confirm Details</ng-template>
+            <div>
+                 <mat-label>First Name:&nbsp;{{ newMember.firstName }}</mat-label>
+                 <br />
+                 <mat-label>Last Name:&nbsp;{{ newMember.lastName }}</mat-label>
+                 <br />
+                 <mat-label>Email:&nbsp;{{ newMember.email }}</mat-label>
+                 <br />
+                 <mat-label>Job Title:&nbsp;{{ newMember.jobTitle }}</mat-label>
+                 <br />
+                 <mat-label>Profile Description:&nbsp;{{ newMember.profileDescription }}</mat-label>
+            </div>
             <div>
                 <button mat-button (click)="stepper.reset()">Reset</button>
                 <button mat-button (click)="saveMember()">Save</button>

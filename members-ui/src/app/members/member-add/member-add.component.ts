@@ -13,7 +13,8 @@ import { MemberInterface } from '../member-interface';
 })
 export class MemberAddComponent implements OnInit {
   memberPersonalDetailsForm: FormGroup = <FormGroup>{};
-  
+  newMember: MemberInterface = <MemberInterface>{};
+
   constructor(private formBuilder: FormBuilder
     , private skillService: SkillService) {
 
@@ -46,36 +47,34 @@ export class MemberAddComponent implements OnInit {
     })
   }
 
-  ngAfterViewInit(){
-  
-  
+  saveMemberTemp(){
+    if(this.memberPersonalDetailsForm.valid){
+      this.newMember.firstName = this.memberPersonalDetailsForm.controls['firstName'].value;
+      this.newMember.lastName = this.memberPersonalDetailsForm.controls['lastName'].value;
+      this.newMember.email = this.memberPersonalDetailsForm.controls['email'].value;
+      this.newMember.jobTitle = this.memberPersonalDetailsForm.controls['jobTitle'].value;
+      this.newMember.profilePicture = this.memberPersonalDetailsForm.controls['profilePicture'].value;
+      this.newMember.profileDescription = this.memberPersonalDetailsForm.controls['profileDescription'].value;
+    }
+  }
+
+  saveSkillsTemp(){
+    let newMemberSkills: SkillInterface[] = new Array();
+    
+    this.skills.controls.forEach(item => {
+      let newMemberSkill = <SkillInterface>{};
+      if(item.value.selected){
+        newMemberSkill._id = item.value.id;
+        newMemberSkill.name = item.value.name;
+        newMemberSkills.push(newMemberSkill);
+      }
+    })
+
+    this.newMember.skills = newMemberSkills;
   }
   
   saveMember(){
-    let newMember: MemberInterface = <MemberInterface>{};
-    let newMemberSkills: SkillInterface[] = new Array();
-
-    if(this.memberPersonalDetailsForm.valid){
-      newMember.firstName = this.memberPersonalDetailsForm.controls['firstName'].value;
-      newMember.lastName = this.memberPersonalDetailsForm.controls['lastName'].value;
-      newMember.email = this.memberPersonalDetailsForm.controls['email'].value;
-      newMember.jobTitle = this.memberPersonalDetailsForm.controls['jobTitle'].value;
-      newMember.profilePicture = this.memberPersonalDetailsForm.controls['profilePicture'].value;
-      newMember.profileDescription = this.memberPersonalDetailsForm.controls['profileDescription'].value;
-
-      
-      this.skills.controls.forEach(item => {
-        let newMemberSkill = <SkillInterface>{};
-        if(item.value.selected){
-          newMemberSkill._id = item.value.id;
-          newMemberSkill.name = item.value.name;
-          newMemberSkills.push(newMemberSkill);
-        }
-      })
-
-      newMember.skills = newMemberSkills;
-
-    }
+    console.log("New Member", this.newMember);
   }
 
 
