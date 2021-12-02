@@ -1,7 +1,7 @@
 <mat-stepper [linear]="true" #stepper>
     <form [formGroup]="memberPersonalDetailsForm">
         <mat-step [stepControl] = "memberPersonalDetailsForm">
-            <ng-template matStepLabel>Fill out personal details</ng-template>
+            <ng-template matStepLabel>Personal Details</ng-template>
                 <div>
                     <mat-form-field appearance="fill">
                         <input matInput placeholder="First Name" formControlName="firstName"  />
@@ -29,7 +29,7 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <button mat-button matStepperNext (click)="saveMemberTemp();">Next</button>
+                    <button mat-button matStepperNext>Next</button>
                 </div>
         </mat-step>
         <mat-step [stepControl] = "memberPersonalDetailsForm">
@@ -45,23 +45,13 @@
             </div>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext (click)='saveSkillsTemp()'>Next</button>
+                <button mat-button (click)='skillsNext()'>Next</button>
             </div>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Confirm Details</ng-template>
+            <ng-template matStepLabel>Confirmation</ng-template>
             <div>
-                 <mat-label>First Name:&nbsp;{{ newMember.firstName }}</mat-label>
-                 <br />
-                 <mat-label>Last Name:&nbsp;{{ newMember.lastName }}</mat-label>
-                 <br />
-                 <mat-label>Email:&nbsp;{{ newMember.email }}</mat-label>
-                 <br />
-                 <mat-label>Job Title:&nbsp;{{ newMember.jobTitle }}</mat-label>
-                 <br />
-                 <mat-label>Profile Description:&nbsp;{{ newMember.profileDescription }}</mat-label>
-            </div>
-            <div>
+                <span>You are done. Continue saving new member?</span>
                 <button mat-button (click)="stepper.reset()">Reset</button>
                 <button mat-button (click)="saveMember()">Save</button>
             </div>

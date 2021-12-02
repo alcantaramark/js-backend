@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   exports: [ HeaderNavComponent, FooterComponent ]
 })

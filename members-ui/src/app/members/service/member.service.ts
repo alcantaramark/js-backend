@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, throwError, retry } from 'rxjs';
+import { MemberInterface } from '../member-interface';
 import { API_URL } from './../../../environments/environment';
 
 @Injectable({
@@ -14,5 +15,12 @@ export class MemberService {
     return this.http.get(`${ API_URL }members`).pipe(
       catchError(e => { throw 'error in member service: ' + JSON.stringify(e) })
     );
+  }
+
+  saveNewMember(newMember: MemberInterface): Observable<MemberInterface>{
+    return this.http.post<MemberInterface>(`${ API_URL }members`, newMember)
+      .pipe(
+        retry(2)
+      );
   }
 }
