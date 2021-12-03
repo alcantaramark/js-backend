@@ -23,4 +23,11 @@ export class MemberService {
         retry(2)
       );
   }
+
+  deleteMember(id: string): Observable<string>{
+    return this.http.delete<string>(`${ API_URL }members/${id}`)
+      .pipe(
+        retry(2)
+      );
+  }
 }

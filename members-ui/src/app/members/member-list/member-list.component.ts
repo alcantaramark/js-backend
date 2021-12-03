@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/shared/service/common/common.service';
+import { MemberDeleteComponent } from '../member-delete/member-delete.component';
 import { MemberInterface } from '../member-interface';
 import { MemberService } from './../service/member.service';
 
@@ -13,20 +14,23 @@ import { MemberService } from './../service/member.service';
 
 export class MemberListComponent implements OnInit {
   members: MemberInterface[] = new Array(); 
-  constructor(private memberService: MemberService,
-    public router: Router) {
-
-    this.memberService.getMembers().subscribe(res => {
-      this.members = res;
-      console.log('Members', JSON.stringify(res));
-    });
-
+  
+  constructor(private memberService: MemberService
+    , private commonService: CommonService
+    , public router: Router) {
+      this.memberService.getMembers().subscribe(res => {
+        this.members = res;
+        console.log('Members', JSON.stringify(res));
+      });
   }
 
   ngOnInit(): void {
     
   }
 
-  
-
+  confirmDelete(member: MemberInterface){
+    this.commonService.showDialog(MemberDeleteComponent, 
+      { id: member._id, name: `${ member.firstName } ${member.lastName}`}, { closed: () => 
+           this.members = this.members.filter(item => item._id != member._id )} );
+  }
 }

@@ -13,6 +13,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { MemberListComponent } from './member-list/member-list.component';
@@ -21,13 +22,15 @@ import { MembersRoutingModule } from './../members/members-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { MemberAddComponent } from './member-add/member-add.component';
+import { MemberDeleteComponent } from './member-delete/member-delete.component';
 
 
 @NgModule({
   declarations: [
     MemberListComponent,
     MemberHomeComponent,
-    MemberAddComponent
+    MemberAddComponent,
+    MemberDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { MemberAddComponent } from './member-add/member-add.component';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatDialogModule,
     MembersRoutingModule,
     FlexLayoutModule,
     RouterModule,
