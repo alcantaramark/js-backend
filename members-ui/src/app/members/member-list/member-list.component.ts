@@ -25,12 +25,10 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   confirmDelete(member: MemberInterface){
     this.commonService.showDialog(MemberDeleteComponent, 
-      { id: member._id, name: `${ member.firstName } ${member.lastName}`}, { closed: () => 
-           this.members = this.members.filter(item => item._id != member._id )} );
+      { id: member._id, name: `${ member.firstName } ${member.lastName}`});
   }
 }
