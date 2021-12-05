@@ -1,0 +1,35 @@
+.card {
+    max-width: 600px;
+    margin: 1em;
+}
+
+mat-list-item {
+    height: auto;
+}
+
+
+.header-image{
+    background-size: cover;
+}
+
+img {
+    height: 60px;
+    width: 60px;
+}
+
+.button-container{
+    align-items: flex-end;
+    width: 10px;
+}
+
+.fab-main {
+    top: auto;
+    right: 20px;
+    bottom: 70px;
+    left: auto;
+    position: fixed;
+}
+
+.skills-container{
+    display: flex;
+}

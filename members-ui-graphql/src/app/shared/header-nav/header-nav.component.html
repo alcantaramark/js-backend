@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle();">
+            <mat-icon color="secondary">menu</mat-icon>
+        </button>
+        <span>Node js Backend Demo with Graphql</span>
+        <span class="spacer"></span>
+        <a mat-button href="https://github.com/alcantaramark/js-backend/tree/main/members-ui">
+            <img src="./../../../assets/images/github-icon.png" />
+            <span>Github</span>
+        </a>    
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="loader-container" *ngIf="loaderService.isLoading | async">
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+</div>
+<mat-drawer-container hasBackdrop="true">
+    <mat-drawer  #drawer class="side-nav" mode="push">
+        <mat-list role="lists">
+            <mat-list-item>
+                <a mat-button [routerLink]="['members']" (click)="drawer.toggle()">
+                    <mat-icon color="primary">groups</mat-icon>
+                    <span>Members</span>
+                </a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-button [routerLink]="['skills']" (click)="drawer.toggle()">
+                    <mat-icon color="primary">work</mat-icon>
+                    <span>Skills</span>
+                </a>
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
