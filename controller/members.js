@@ -74,7 +74,7 @@ exports.createMember = (req, res) => {
         jobTitle: req.body.jobTitle,
         profileDescription: req.body.profileDescription
     });
-
+    
     member.save(member).then(data => res.status(200).send(data))
         .catch(e => res.status(500).send({ message: e.message }));
 };
