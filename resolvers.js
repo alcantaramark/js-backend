@@ -1,11 +1,14 @@
 const Member = require("./model/members");
+const Skill = require("./model/skills");
+
 const resolvers = {
     Query: {
         hello: () => { return 'Hello World' },
         getAllMembers: async () => {
             const members = await Member.find().populate('skills');
             return members;
-        }
+        },
+        getAllSkills: async () => await Skill.find()
     },
     Mutation:{
         createMember: async (parent, args, context, info) => {

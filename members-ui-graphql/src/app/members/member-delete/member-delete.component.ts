@@ -23,6 +23,10 @@ export class MemberDeleteComponent implements OnInit {
   }
 
   deleteMember(){
-    
+    this.memberService.deleteMember(this.data.id).subscribe({next: ()=> {
+        this.commonService.displayMessage(`Member successfully deleted`, `Dismiss`);
+        this.router.navigate(['members-list']);
+      }, error: (e) => console.error(`Error deleting member ${this.data.name}`, e)
+    })
   }
 }

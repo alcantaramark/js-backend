@@ -43,7 +43,9 @@ export class MemberAddComponent implements OnInit {
     controls.clear();
     
     setTimeout(() => {
-      this.skillService.getSkills().subscribe({ next: (skills: SkillInterface[]) => {
+      this.skillService.getSkills().subscribe({ next: (res) => {
+        console.log(`Skills from Graphql`, res);
+        let skills: SkillInterface[] = res.data.getAllSkills; 
         skills.forEach(obj => {
           controls.push(this.formBuilder.group({
             id: [obj._id],
@@ -84,6 +86,15 @@ export class MemberAddComponent implements OnInit {
     })
 
     this.newMember.skills = newMemberSkills;
+    
+    this.memberService.createMember(this.newMember).subscribe({ 
+      next: (res) => { 
+        this.commonService.displayMessage(`Member ${this.newMember.firstName} ${ this.newMember.lastName }
+          successfully added`, `Dismiss`);
+        this.router.navigate(['members-list']);
+      }, error: (e) => console.error(`Error creating new member`, e)
+    });
+
     console.log("New Member", this.newMember);
 }
 

@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const API_URL: string = 'https://backend-js.azurewebsites.net/api/';
+export const API_URL: string = 'https://backend-js.azurewebsites.net/graphql/';
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -8,11 +8,16 @@ const typeDefs = gql`
         jobTitle: String
         profilePicture: String
         profileDescription: String
-        skills: [String]
+        skills: [SkillReferenceInput]
+    }
+
+    input SkillReferenceInput{
+        _id: ID,
+        name: String
     }
 
     type Member{
-        id: ID
+        _id: ID
         firstName: String
         lastName: String
         email: String
@@ -23,13 +28,14 @@ const typeDefs = gql`
     }
     
     type Skill{
-        id: ID,
+        _id: ID,
         name: String
     }
 
     type Query{
         hello: String
         getAllMembers: [Member]
+        getAllSkills: [Skill]
     }
     
     type Mutation{

@@ -15,6 +15,7 @@ import { APIInterceptor } from './shared/service/interceptor/api.interceptor';
 import { APOLLO_OPTIONS } from 'apollo-angular/';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
+import { API_URL } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { InMemoryCache } from '@apollo/client/core';
        return {
         cache: new InMemoryCache(),
         link: httpLink.create({
-          uri: "https://backend-js.azurewebsites.net/graphql"
+          uri: API_URL
         })
        };
      },

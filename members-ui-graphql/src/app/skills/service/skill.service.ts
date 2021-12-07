@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { API_URL } from './../../../environments/environment';
 import { Observable, catchError } from 'rxjs';
+import { Apollo } from 'apollo-angular';
+import { gql } from '@apollo/client/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
+  private GET_SKILLS = gql`query Skills{
+    getAllSkills{
+      _id
+      name
+    }
+  }`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private apollo: Apollo) { }
 
   getSkills(): Observable<any>{
-    return this.http.get(`${ API_URL }skills`).pipe(
-      catchError(e => { throw 'error in skill service: ' + JSON.stringify(e) })
-    );
+    return this.apollo.watchQuery({
+      query: this.GET_SKILLS,
+    }).valueChanges;
   }
 }
