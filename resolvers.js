@@ -15,7 +15,7 @@ const resolvers = {
             });
             
             const member = await Member.create(newMember);
-            return Member.findById(member.id).populate('skills');
+            return await Member.findById(member.id).populate('skills');
         },
         deleteMember: async(parent, { id }, context, info) => {
             await Member.findByIdAndDelete(id);
