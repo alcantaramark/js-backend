@@ -23,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { MemberAddComponent } from './member-add/member-add.component';
 import { MemberDeleteComponent } from './member-delete/member-delete.component';
+import { MemberUpdateComponent } from './member-update/member-update.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MemberDeleteComponent } from './member-delete/member-delete.component';
     MemberListComponent,
     MemberHomeComponent,
     MemberAddComponent,
-    MemberDeleteComponent
+    MemberDeleteComponent,
+    MemberUpdateComponent
   ],
   imports: [
     CommonModule,

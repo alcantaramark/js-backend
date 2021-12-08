@@ -34,7 +34,8 @@ const typeDefs = gql`
 
     type Query{
         hello: String
-        getAllMembers: [Member]
+        getAllMembers: [Member],
+        getMemberById(id: ID): Member
         getAllSkills: [Skill]
     }
     

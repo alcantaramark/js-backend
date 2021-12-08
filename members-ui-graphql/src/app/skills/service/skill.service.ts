@@ -3,23 +3,19 @@ import { API_URL } from './../../../environments/environment';
 import { Observable, catchError } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { gql } from '@apollo/client/core';
+import { SkillsQueries } from 'src/app/graphql/queries/skills-queries';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
-  private GET_SKILLS = gql`query Skills{
-    getAllSkills{
-      _id
-      name
-    }
-  }`;
-
-  constructor(private apollo: Apollo) { }
+  
+  constructor(private apollo: Apollo,
+    private skillsQueries: SkillsQueries) { }
 
   getSkills(): Observable<any>{
     return this.apollo.watchQuery({
-      query: this.GET_SKILLS,
+      query: this.skillsQueries.GET_SKILLS,
     }).valueChanges;
   }
 }
