@@ -18,11 +18,13 @@ export class MemberListComponent implements OnInit {
   constructor(private memberService: MemberService
     , private commonService: CommonService
     , public router: Router) {
+      
       this.memberService.getMembers().subscribe({
         next: res => {
           console.log("Successfully received members data", res)
           this.members = res.data.getAllMembers
         }
+        ,error: (e) => {}
       });    
   }
 

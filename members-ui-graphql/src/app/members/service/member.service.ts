@@ -29,8 +29,7 @@ export class MemberService {
 
   getMembers():Observable<any>{
     return this.apollo.watchQuery({
-      query: this.membersQueries.GET_MEMBERS,
-      notifyOnNetworkStatusChange: false
+      query: this.membersQueries.GET_MEMBERS
     }).valueChanges;
   }
   
