@@ -25,12 +25,11 @@ import { LoaderService } from './shared/service/loader/loader.service';
 
 export function intercept(loaderService: LoaderService
         , httpLink: HttpLink){
-
-    loaderService.isLoading.next(true);
     const http = httpLink.create({ uri: API_URL });
     const middleware = new ApolloLink((operation, forward) => {
        const token = '=======test token only=======';
        console.log('Http requests in progress');
+       loaderService.isLoading.next(true);
        operation.setContext({
          headers: new HttpHeaders().set('Authorization', `Bearer ${ token || null}`)
        });
