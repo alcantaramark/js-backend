@@ -10,7 +10,7 @@ const resolvers = {
         },
         getAllSkills: async () => await Skill.find(),
         getMemberById: async(parent, { id }, context, info) => {
-            return await Member.findById(id);
+            return await Member.findById(id).populate('skills');
         }
     },
     Mutation:{
