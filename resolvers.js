@@ -1,5 +1,9 @@
 const Member = require("./model/members");
 const Skill = require("./model/skills");
+const { PubSub } = require("graphql-subscriptions");
+
+const NEW_MESSAGE = `NEW_MESSAGE`;
+const pubsub = new PubSub();
 
 const resolvers = {
     Query: {
@@ -11,6 +15,11 @@ const resolvers = {
         getAllSkills: async () => await Skill.find(),
         getMemberById: async(parent, { id }, context, info) => {
             return await Member.findById(id).populate('skills');
+        }
+    },
+    Subscription:{
+        newMessage: {
+            subscribe: () => pubsub.asyncIterator([NEW_MESSAGE])
         }
     },
     Mutation:{
@@ -26,8 +35,18 @@ const resolvers = {
         deleteMember: async(parent, { id }, context, info) => {
             await Member.findByIdAndDelete(id);
             return `Deleted member ${id}`;
+        },
+        newMessage: (parent, args, { pubsub }, info) => {
+            const conversation = {
+                message: args.conversation.message,
+                dateReceived: args.conversation.dateReceived
+            }
+
+            pubsub.publish([NEW_MESSAGE], { newMessage: conversation });
+            return conversation;
         }
     }
 }; 
+
 
 module.exports = resolvers;

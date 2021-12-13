@@ -6,5 +6,5 @@
         "members-ui{,/**}",
         "members-ui-graphql{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/a8780956-690a-4d14-a1bd-6ced685bc73f/resourceGroups/backend-js-rg/providers/Microsoft.Web/sites/backend-js"
+    "appService.defaultWebAppToDeploy": "None"
 }

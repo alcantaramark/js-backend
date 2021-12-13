@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 
+
 const typeDefs = gql`
     input MemberInput{
         firstName: String
@@ -14,6 +15,11 @@ const typeDefs = gql`
     input SkillReferenceInput{
         _id: ID,
         name: String
+    }
+
+    input ConversationInput{
+        message: String!,
+        dateReceived: String!
     }
 
     type Member{
@@ -32,16 +38,26 @@ const typeDefs = gql`
         name: String
     }
 
+    type Conversation{
+        message: String!,
+        dateReceived: String!
+    }
+
+    type Subscription{
+        newMessage: Conversation!
+    }
+
     type Query{
         hello: String
         getAllMembers: [Member],
-        getMemberById(id: ID): Member
+        getMemberById(id: ID): Member,
         getAllSkills: [Skill]
     }
     
     type Mutation{
-        createMember(member: MemberInput): Member
-        deleteMember(id: ID): String
+        createMember(member: MemberInput): Member,
+        deleteMember(id: ID): String,
+        newMessage(conversation: ConversationInput): Conversation
     }`;
     
 module.exports = typeDefs;    
