@@ -24,10 +24,10 @@ export class CommonService {
     }
   }
 
-  showDialog(component: ComponentType<unknown>, information?:{}, action?: {opened?: () => void
+  showDialog(component: ComponentType<unknown>, config?:{}, action?: {opened?: () => void
       , closed?:() => void}){
-    const dialogRef = this.dialog.open(component, { data: information })
-
+    const dialogRef = this.dialog.open(component, config)
+    
     if(action?.opened !== undefined)
       dialogRef.afterOpened().subscribe(action.opened);
      

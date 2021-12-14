@@ -34,6 +34,7 @@ export class MemberListComponent implements OnInit {
 
   confirmDelete(member: MemberInterface){
     this.commonService.showDialog(MemberDeleteComponent, 
-      { id: member._id, name: `${ member.firstName } ${member.lastName}`});
+      { data: { id: member._id, name: `${ member.firstName } ${member.lastName}`}
+      , hasBackdrop: false});
   }
 }

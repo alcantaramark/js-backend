@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonService } from '../service/common/common.service';
 import { LoaderService } from '../service/loader/loader.service';
+import { ChatSupportComponent } from './../chat-support/chat-support.component'
 
 @Component({
   selector: 'app-header-nav',
@@ -8,9 +11,23 @@ import { LoaderService } from '../service/loader/loader.service';
 })
 export class HeaderNavComponent implements OnInit {
 
-  constructor(public loaderService: LoaderService) { }
+  constructor(public loaderService: LoaderService
+    , public router: Router
+    , private commonService: CommonService) { }
 
   ngOnInit(): void {
   }
 
+  openChatSupport(){
+    this.commonService.showDialog(ChatSupportComponent, { 
+      hasBackdrop: false
+      , width: '350px'
+      , height: '500px'
+      , disableClose: false
+      , position: { 
+          bottom: '20px',
+          right: '100px'
+        }
+     })
+  }
 }

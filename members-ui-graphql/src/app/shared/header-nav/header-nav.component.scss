@@ -34,3 +34,24 @@ mat-drawer-content {
     z-index: 99;
     margin: 0;
   }
+
+  .fab-main {
+    top: auto;
+    right: 20px;
+    bottom: 140px;
+    left: auto;
+    position: fixed;
+}
+
+
+.fab-chat {
+    top: auto;
+    right: 20px;
+    bottom: 80px;
+    left: auto;
+    position: fixed;
+}
+
+.mat-icon-button {
+    line-height: unset;
+ }

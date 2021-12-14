@@ -32,6 +32,16 @@
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
+        <button mat-mini-fab color="primary" class="fab-chat" (click)="openChatSupport()">
+            <mat-icon class="mat-icon-button">
+                question_answer
+            </mat-icon> 
+        </button>
+        <button mat-mini-fab color="primary" class="fab-main" (click)="this.router.navigate(['members/member-add'])">
+            <mat-icon class="mat-icon-button">
+                person_add_alt
+            </mat-icon>    
+        </button>
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>

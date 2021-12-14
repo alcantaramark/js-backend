@@ -14,13 +14,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ChatSupportComponent } from './chat-support/chat-support.component';
 
 
 @NgModule({
   providers:[],
   declarations: [
     HeaderNavComponent,
-    FooterComponent
+    FooterComponent,
+    ChatSupportComponent
   ],
   imports: [
     CommonModule,
