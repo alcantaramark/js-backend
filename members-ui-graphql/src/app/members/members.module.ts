@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MemberListComponent } from './member-list/member-list.component';
 import { MembersRoutingModule } from './../members/members-routing.module';
@@ -51,6 +51,7 @@ import { MemberUpdateComponent } from './member-update/member-update.component';
     FlexLayoutModule,
     RouterModule,
     FormsModule,
+    MatTooltipModule,
     ReactiveFormsModule
   ],
   exports: [

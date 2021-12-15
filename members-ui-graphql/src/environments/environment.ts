@@ -7,6 +7,7 @@ export const environment = {
 };
 
 export const API_URL: string = 'https://backend-js.azurewebsites.net/graphql/';
+export const SUBSCRIPTION_URL: string = `ws://backend-js.azurewebsites.net/graphql`;
 
 /*
  * For easier debugging in development mode, you can import the following file

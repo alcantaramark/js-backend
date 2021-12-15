@@ -25,7 +25,7 @@ export class HeaderNavComponent implements OnInit {
       , height: '500px'
       , disableClose: false
       , position: { 
-          bottom: '20px',
+          bottom: '65px',
           right: '100px'
         }
      })

@@ -13,11 +13,14 @@ import { SharedModule } from './shared/shared.module';
 //Apollo
 import { APOLLO_OPTIONS } from 'apollo-angular/';
 import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache, ApolloLink } from '@apollo/client/core';
+import { InMemoryCache, ApolloLink, split } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
+
 
 //Environment
-import { API_URL } from 'src/environments/environment';
+import { API_URL, SUBSCRIPTION_URL } from 'src/environments/environment';
 
 //add-ons
 import { from } from 'rxjs';
@@ -26,6 +29,24 @@ import { LoaderService } from './shared/service/loader/loader.service';
 export function intercept(loaderService: LoaderService
         , httpLink: HttpLink){
     const http = httpLink.create({ uri: API_URL });
+
+    const ws = new WebSocketLink({
+      uri: `ws://localhost:8080/graphql`,
+      options: { reconnect: true,
+        
+      }
+    });      
+
+
+    const conditionalLink = split(
+      ({ query }) => {
+        let definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+      },
+      ws,
+      http
+    );
+
     const middleware = new ApolloLink((operation, forward) => {
        const token = '=======test token only=======';
        console.log('Http requests in progress');
@@ -45,12 +66,18 @@ export function intercept(loaderService: LoaderService
 
     const link = ApolloLink.from([middleware.concat(http)
      , error.concat(http)
-     , http
+     , conditionalLink
    ])
 
     return {
      cache: new InMemoryCache(),
-     link
+     link,
+     defaultOptions: {
+       watchQuery: {
+         fetchPolicy: 'network-only',
+         errorPolicy: 'all'
+       }
+     }
     };
 }
 

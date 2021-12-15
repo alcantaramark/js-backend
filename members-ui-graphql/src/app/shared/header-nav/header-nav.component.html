@@ -33,12 +33,12 @@
     </mat-drawer>
     <mat-drawer-content>
         <button mat-mini-fab color="primary" class="fab-chat" (click)="openChatSupport()">
-            <mat-icon class="mat-icon-button">
+            <mat-icon class="mat-icon-button" matTooltip="Add new member">
                 question_answer
             </mat-icon> 
         </button>
         <button mat-mini-fab color="primary" class="fab-main" (click)="this.router.navigate(['members/member-add'])">
-            <mat-icon class="mat-icon-button">
+            <mat-icon class="mat-icon-button" matTooltip="Contact support">
                 person_add_alt
             </mat-icon>    
         </button>
