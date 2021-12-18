@@ -13,62 +13,23 @@ import { ChatSupportInterface } from './chat-support-interface';
   styleUrls: ['./chat-support.component.scss']
 })
 export class ChatSupportComponent implements OnInit {
-  private chatQuery: QueryRef<any>;
-  private chat: Observable<any>;
-
-  constructor(
-      private messageQueries: MessageQueries
-    , private apollo: Apollo
-    , private messageSubscriptions: MessageSubscriptions
-    , private messageMutations: MessagesMutations) { 
+  constructor(private chatService: ChatService) { 
     
-      this.chatQuery = this.apollo.watchQuery({
-        query: messageQueries.GET_MESSAGE
-      });
-
-      this.chat = this.chatQuery.valueChanges;
-      this.chat.subscribe({next: (data) => console.log('subscription Data', data), error: (e) => console.error('error', e)})
+      
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.subscribeToNewMessages());
+    //setTimeout(() => this.chatService.subscribeToNewMessages());
+   
+  }
+
+  ngAfterViewInit(){
+    this.chatService.subscribeToNewMessages();
   }
 
   sendMessage(){
-    this.sendMessage2();
+    this.chatService.sendMessage().subscribe();
   }
 
-  sendMessage2(): Observable<any>{
-    let conversation: ChatSupportInterface = {
-      dateReceived: Date.now().toString(),
-      message: "Initial Message"
-    }
-    
-    return this.apollo.mutate({
-      mutation: this.messageMutations.SEND_MESSAGE,
-      variables:{
-        message: conversation
-      },
-    })
-  }
-
-  subscribeToNewMessages(){
-    this.chatQuery.subscribeToMore({
-      document: this.messageSubscriptions.NEW_MESSAGE,
-      updateQuery: (prev, { subscriptionData }) => {
-         console.log('subscriptionData', subscriptionData)
-        // if(!subscriptionData.data.newMessage)
-        //   return prev;
-        // const newMessage = subscriptionData.data.newMessage;
-        // console.log('data coming from subscription', newMessage);
-        // return {
-        //   ...prev,
-        //   entry: {
-        //     chat: [newMessage, ...prev.entry.newMessage]
-        //   }
-        // }  
-      },
-      onError: err => console.error('Error in subscription', err)
-    })
-  }
+ 
 }

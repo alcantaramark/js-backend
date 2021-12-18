@@ -1,58 +1,46 @@
-const express = require("express");
+import express from "express"
+import dotenv from "dotenv";
+dotenv.config();
 const port = process.env.port || 8080;
-const { ApolloServer } = require("apollo-server-express");
-const { PubSub } = require("graphql-subscriptions");
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers")
-const { createServer } = require("http");
-const { execute, subscribe } = require("graphql");
-const { SubscriptionServer } = require("subscriptions-transport-ws");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
-
+import { ApolloServer } from "apollo-server-express";
+import { typeDefs } from "./typeDefs.js";
+import { resolvers, signalRPubSub } from "./resolvers.js"
+import { createServer } from "http";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { connectDB } from "./config.js"
+import { memberRouter } from "./route/members.js";
+import { skillRouter } from "./route/skills.js";
 
 async function startServer(){
-    require("./config")();
+    connectDB();
 
     const app = express();
     app.use(express.json());
 
-    require("./route/members")(app);
-    require("./route/skills")(app);
+    memberRouter(app);
+    skillRouter(app);
 
-    //subscription
-    const pubsub = new PubSub();
     const httpServer = createServer(app);
     const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-    const subscriptionServer = SubscriptionServer.create({
-        schema,
-        execute,
-        subscribe
-    }, {
-        server: httpServer,
-        path: '/graphql'
-    });
-
+   
     const apolloServer = new ApolloServer({
         schema,
-        context: ({req, res}) => ({req, res, pubsub}),
-        plugins:[{
-            async serverWillStart(){
-                return{
-                    async drainServer(){
-                        subscriptionServer.close();
-                    }
-                };
-            }
-        }]
     });
 
     
     await apolloServer.start();
     apolloServer.applyMiddleware({ app: app });
+    
+    httpServer.listen(port, () => { 
+        console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
+        console.log(`🚀 Subscriptions ready at ws://localhost:${port}/graphql`);
 
-    //app.listen(port, () => console.log(`server is listening to port ${port}`));
-    httpServer.listen(port, () => console.log(`server is listening to port ${port}`));
+        signalRPubSub.start()
+            .then(() =>  { console.log("🚀 SignalR up and running"); console.log(signalRPubSub) })
+            .catch((err) => console.error(err))
+
+    });
 }
 
 startServer();

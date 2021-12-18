@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
 const { DB_PASSWORD } = process.env;
-const connectDB = () => {
+export const connectDB = () => {
     return mongoose.connect(
         `mongodb://alcantaramarkjohn:${DB_PASSWORD}@alcantaramarkjohn.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@alcantaramarkjohn@`,
         {
@@ -14,4 +14,4 @@ const connectDB = () => {
      .catch(err => console.error("Error Creating Database", err.message));
 };
 
-module.exports = connectDB;
+//module.exports = connectDB;

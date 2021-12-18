@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { WebSocketService } from './shared/service/web-socket/web-socket.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  public constructor(private router: Router){
+  public constructor(private router: Router
+      , webSocketService: WebSocketService){
 
   }
 

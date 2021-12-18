@@ -1,5 +1,6 @@
 {
   "name": "backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "Sample JS Backend",
   "main": "index.js",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/alcantaramark/js-backend#readme",
   "dependencies": {
+    "@aaronpowell/graphql-signalr-subscriptions": "^0.3.0",
     "@graphql-tools/schema": "^8.3.1",
     "apollo-server-express": "^3.5.0",
     "body-parser": "^1.19.0",
@@ -27,9 +29,7 @@
     "graphql": "^16.0.1",
     "graphql-subscriptions": "^2.0.0",
     "mongoose": "^6.0.15",
-    "subscriptions-transport-ws": "^0.11.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+    "subscriptions-transport-ws": "^0.11.0",
+    "web-pubsub-graphql-subscribe": "^1.0.1"
   }
 }

@@ -30,22 +30,22 @@ export function intercept(loaderService: LoaderService
         , httpLink: HttpLink){
     const http = httpLink.create({ uri: API_URL });
 
-    const ws = new WebSocketLink({
-      uri: `ws://localhost:8080/graphql`,
-      options: { reconnect: true,
+    // const ws = new WebSocketLink({
+    //   uri: `ws://localhost:8080/graphql`,
+    //   options: { reconnect: true,
         
-      }
-    });      
+    //   }
+    // });      
 
 
-    const conditionalLink = split(
-      ({ query }) => {
-        let definition = getMainDefinition(query);
-        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
-      },
-      ws,
-      http
-    );
+    // const conditionalLink = split(
+    //   ({ query }) => {
+    //     let definition = getMainDefinition(query);
+    //     return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+    //   },
+    //   ws,
+    //   http
+    // );
 
     const middleware = new ApolloLink((operation, forward) => {
        const token = '=======test token only=======';
@@ -66,18 +66,12 @@ export function intercept(loaderService: LoaderService
 
     const link = ApolloLink.from([middleware.concat(http)
      , error.concat(http)
-     , conditionalLink
+     , http
    ])
 
     return {
      cache: new InMemoryCache(),
      link,
-     defaultOptions: {
-       watchQuery: {
-         fetchPolicy: 'network-only',
-         errorPolicy: 'all'
-       }
-     }
     };
 }
 

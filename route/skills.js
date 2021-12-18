@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
 
-module.exports = app => {
-    const { getAllSkills } = require('../controller/skills');
+import { getAllSkills } from "../controller/skills.js";
+
+export const skillRouter = app => {
     var router = express.Router();
 
     router.get("/", getAllSkills);

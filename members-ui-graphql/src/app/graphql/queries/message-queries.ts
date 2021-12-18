@@ -5,7 +5,7 @@ import { gql } from "@apollo/client/core";
 
 export class MessageQueries {
     GET_MESSAGE = gql`query Message{
-        newMessage{
+        getMessage{
             message
             dateReceived
         }

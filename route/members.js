@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import { getAllMembers, getMember, createMember, deleteMember, updateMember }  from "./../controller/members.js";
 
-module.exports = app => {
-    const { getAllMembers, getMember, createMember, deleteMember, updateMember } = require("../controller/members");
+export const memberRouter = app => {
+    
     var router = express.Router();
 
     router.get("/:id", getMember);
@@ -9,5 +10,5 @@ module.exports = app => {
     router.delete("/:id", deleteMember);
     router.post("/", createMember);
     router.put("/:id", updateMember);
-    app.use("/api/members", router);
+    app.use("/api/members", router); 
 }

@@ -1,6 +1,6 @@
-const Skills = require("../model/skills");
+import { Skills } from  "./../model/skills.js"; 
 
-exports.getAllSkills = (req, res) => {
+export const getAllSkills = (req, res) => {
     const id = req.query.id;
 
     if(!id)

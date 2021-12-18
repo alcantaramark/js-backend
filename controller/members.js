@@ -1,9 +1,9 @@
-const Members = require("../model/members");
-const Skills = require("../model/skills");
+import {Members} from "./../model/members.js";
+import {Skills} from "./../model/skills.js";
 
-exports.getAllMembers = (req, res) => {
+
+export const getAllMembers = (req, res) => {
     const id = req.query.id;
-    
     if(!id)
         Members.find().populate('skills').exec((err, data) => {
             if(err) 
@@ -20,7 +20,7 @@ exports.getAllMembers = (req, res) => {
         });        
 };
 
-exports.deleteMember = (req, res) => {
+export const deleteMember = (req, res) => {
     const id = req.params.id;
     
     Members.findByIdAndDelete(id).then(data => {
@@ -31,7 +31,7 @@ exports.deleteMember = (req, res) => {
     }).catch(e => res.status(505).send({ message: e.message}));
 };
 
-exports.getMember = (req, res) => {
+export const getMember = (req, res) => {
     const id = req.params.id;
     
     Members.findById(id).populate('skills').exec((err, data) => {
@@ -42,7 +42,7 @@ exports.getMember = (req, res) => {
     });    
 };
 
-exports.updateMember = (req, res) => {
+export const updateMember = (req, res) => {
     console.log(req.body)
     if(!req.body.firstName)
         return res.status(404).send({ message: "Cannot find member to update"});
@@ -58,7 +58,7 @@ exports.updateMember = (req, res) => {
         .catch(e => res.status(500).send({ message: e.message}));
 };
 
-exports.createMember = (req, res) => {
+export const createMember = (req, res) => {
     console.log(req.body);
     if(!req.body.firstName){
         res.status(400).send({ message: "Content cannot be empty" });

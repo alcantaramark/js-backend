@@ -1,7 +1,7 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
 
-const typeDefs = gql`
+export const typeDefs = gql`
     input MemberInput{
         firstName: String
         lastName: String
@@ -51,7 +51,8 @@ const typeDefs = gql`
         hello: String
         getAllMembers: [Member],
         getMemberById(id: ID): Member,
-        getAllSkills: [Skill]
+        getAllSkills: [Skill],
+        getMessage: Conversation
     }
     
     type Mutation{
@@ -60,4 +61,4 @@ const typeDefs = gql`
         newMessage(conversation: ConversationInput): Conversation
     }`;
     
-module.exports = typeDefs;    
+//module.exports = typeDefs;    

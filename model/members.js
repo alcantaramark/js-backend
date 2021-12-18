@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 
 const membersSchema = new mongoose.Schema({
@@ -11,5 +11,5 @@ const membersSchema = new mongoose.Schema({
     skills: [{type: mongoose.Types.ObjectId, ref: 'Skills'}]
 });
 
-const Member = mongoose.model("Members", membersSchema);
-module.exports = Member;
+export const Members = mongoose.model("Members", membersSchema);
+
