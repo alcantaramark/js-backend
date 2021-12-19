@@ -8,10 +8,9 @@ export const environment = {
 
 export const API_URL: string = 'https://backend-js.azurewebsites.net/graphql/';
 export const BASE_API_URL: string = 'https://backend-js.azurewebsites.net/';
-export const SUBSCRIPTION_URL: string = `ws://backend-js.azurewebsites.net/graphql`;
-
-// export const API_URL: string = 'http://localhost:8080/graphql/';
-// export const SUBSCRIPTION_URL: string = `ws://localhost:8080/graphql`;
+export const SUBSCRIPTION_URL: string = 'https://backend-js.service.signalr.net/client';
+export const SUBSCRIPTION_HUB_NAME = 'graphql';
+export const SUBSCRIPTION_ACCESS_KEY = 'D9rmsEgejPwyN7czfJi/JYiDYKPjiL2fXr4Ax7HE/CU=';
 
 /*
  * For easier debugging in development mode, you can import the following file
