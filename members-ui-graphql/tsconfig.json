@@ -22,7 +22,8 @@
       "es2020",
       "dom",
       "ESNext.AsyncIterable"
-    ]
+    ],
+    "paths": { "crypto":["node_modules/crypto-js"] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

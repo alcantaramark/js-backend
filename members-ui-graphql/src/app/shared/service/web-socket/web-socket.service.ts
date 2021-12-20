@@ -1,4 +1,3 @@
-import { ConnectionPositionPair } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import * as SignalR from '@microsoft/signalr';
 import { connect } from 'http2';
@@ -27,9 +26,10 @@ export class WebSocketService {
               };
               
               
-            
-              const accessToken = jwt.sign(payload, SUBSCRIPTION_ACCESS_KEY);
-              
+              //var jt = require('jsonwebtoken')
+             
+              //const accessToken = jwt.sign(JSON.stringify(payload), SUBSCRIPTION_ACCESS_KEY);
+              // /alert(accessToken);
               return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2JhY2tlbmQtanMuc2VydmljZS5zaWduYWxyLm5ldC9jbGllbnQvP2h1Yj1ncmFwaHFsIiwiaWF0IjoxNjM5OTE0MjA0LCJleHAiOjE2NDAwMDA2MzR9.Lo-chxT92BFfkhbGOPpXNZhf4iJWWlkYUv2m343U4Ps";
             }
           })

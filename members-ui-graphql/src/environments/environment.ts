@@ -11,7 +11,7 @@ export const BASE_API_URL: string = 'https://backend-js.azurewebsites.net/';
 export const SUBSCRIPTION_URL: string = 'https://backend-js.service.signalr.net/client';
 export const SUBSCRIPTION_HUB_NAME = 'graphql';
 export const SUBSCRIPTION_ACCESS_KEY = 'D9rmsEgejPwyN7czfJi/JYiDYKPjiL2fXr4Ax7HE/CU=';
-
+                                        
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
