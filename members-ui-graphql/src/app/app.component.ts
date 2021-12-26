@@ -11,7 +11,7 @@ import { WebSocketService } from './shared/service/web-socket/web-socket.service
 
 export class AppComponent {
   public constructor(private router: Router
-      , webSocketService: WebSocketService){
+    ){
 
   }
 

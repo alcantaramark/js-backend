@@ -32,5 +32,8 @@
     "nodemodule": "^0.3.0",
     "subscriptions-transport-ws": "^0.11.0",
     "web-pubsub-graphql-subscribe": "^1.0.1"
+  },
+  "devDependencies": {
+    "@microsoft/signalr": "^6.0.1"
   }
 }

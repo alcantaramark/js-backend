@@ -28,24 +28,22 @@ import { LoaderService } from './shared/service/loader/loader.service';
 
 export function intercept(loaderService: LoaderService
         , httpLink: HttpLink){
-    const http = httpLink.create({ uri: API_URL });
+     const http = httpLink.create({ uri: 'http://localhost:8080/graphql/' });
 
-    // const ws = new WebSocketLink({
-    //   uri: `ws://localhost:8080/graphql`,
-    //   options: { reconnect: true,
-        
-    //   }
-    // });      
+    const ws = new WebSocketLink({
+      uri: `ws://localhost:8080/graphql`,
+      options: { reconnect: true }
+    });      
 
 
-    // const conditionalLink = split(
-    //   ({ query }) => {
-    //     let definition = getMainDefinition(query);
-    //     return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
-    //   },
-    //   ws,
-    //   http
-    // );
+    const conditionalLink = split(
+      ({ query }) => {
+        let definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+      },
+      ws,
+      http
+    );
 
     const middleware = new ApolloLink((operation, forward) => {
        const token = '=======test token only=======';
@@ -64,11 +62,12 @@ export function intercept(loaderService: LoaderService
      console.error('Http requests resulted in an error');
     })
 
-    const link = ApolloLink.from([middleware.concat(http)
+    const link = ApolloLink.from([/*middleware.concat(http)
      , error.concat(http)
-     , http
+     ,*/ conditionalLink
    ])
-
+  
+ 
     return {
      cache: new InMemoryCache(),
      link,

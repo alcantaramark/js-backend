@@ -19,12 +19,12 @@ export class ChatSupportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //setTimeout(() => this.chatService.subscribeToNewMessages());
+    setTimeout(() => this.chatService.subscribeToNewMessages());
    
   }
 
   ngAfterViewInit(){
-    this.chatService.subscribeToNewMessages();
+    
   }
 
   sendMessage(){

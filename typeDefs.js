@@ -44,7 +44,7 @@ export const typeDefs = gql`
     }
 
     type Subscription{
-        newMessage: Conversation!
+        newMessage: Conversation
     }
 
     type Query{

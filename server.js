@@ -10,6 +10,8 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { connectDB } from "./config.js"
 import { memberRouter } from "./route/members.js";
 import { skillRouter } from "./route/skills.js";
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { execute, subscribe } from 'graphql'
 
 async function startServer(){
     connectDB();
@@ -23,9 +25,26 @@ async function startServer(){
     const httpServer = createServer(app);
     const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-   
+    const subscriptionServer = SubscriptionServer.create({
+        schema,
+        execute,
+        subscribe,
+     }, {
+        server: httpServer,
+        path: '/graphql',
+     });
+
     const apolloServer = new ApolloServer({
         schema,
+        plugins: [{
+            async serverWillStart() {
+              return {
+                async drainServer() {
+                  subscriptionServer.close();
+                }
+              };
+            }
+          }],
     });
 
     
@@ -37,7 +56,10 @@ async function startServer(){
         console.log(`🚀 Subscriptions ready at ws://localhost:${port}/graphql`);
 
         signalRPubSub.start()
-            .then(() =>  { console.log("🚀 SignalR up and running"); console.log(signalRPubSub) })
+            .then(() =>  { 
+              signalRPubSub.on('NewMessage', (data) => console.log('Standing by for new message....', data.arguments))
+              console.log("🚀 SignalR up and running");
+            })
             .catch((err) => console.error(err))
 
     });

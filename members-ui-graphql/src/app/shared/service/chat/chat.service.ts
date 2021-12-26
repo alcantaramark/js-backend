@@ -34,16 +34,16 @@ export class ChatService{
         document: this.messageSubscriptions.NEW_MESSAGE,
         updateQuery: (prev, { subscriptionData }) => {
            console.log('subscriptionData', subscriptionData)
-          if(!subscriptionData.data.newMessage)
-            return prev;
-          const newMessage = subscriptionData.data.newMessage;
-          console.log('data coming from subscription', newMessage);
-          return {
-            ...prev,
-            entry: {
-              chat: [newMessage, ...prev.entry.newMessage]
-            }
-          }  
+          // if(!subscriptionData.data.newMessage)
+          //   return prev;
+          // const newMessage = subscriptionData.data.newMessage;
+          // console.log('data coming from subscription', newMessage);
+          // return {
+          //   ...prev,
+          //   entry: {
+          //     chat: [newMessage, ...prev.entry.newMessage]
+          //   }
+          // }  
         },
         variables:{},
         onError: err => console.error('Error in subscription', err)
